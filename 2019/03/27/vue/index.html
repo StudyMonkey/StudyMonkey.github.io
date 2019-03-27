@@ -7,18 +7,18 @@
   
   <title>Vue基础介绍 | 小毛的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、Vue安装123$ npm install -g @vue/cli$ cnpm install -g @vue/cli$ yarn add @vue/cli -g 二、快速原型开发123456789101112131415$ npm install -g @vue/cli-service-global$ cnpm install -g @vue/cli-service-global$ yarn">
+  <meta name="description" content="一、Vue安装123456$ npm install -g @vue/cli$ cnpm install -g @vue/cli$ yarn add @vue/cli -g 二、快速原型开发123456$ npm install -g @vue/cli-service-global$ cnpm install -g @vue/cli-service-global$ yarn add @vue/cl">
 <meta name="keywords" content="IT技术,前端,Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue基础介绍">
 <meta property="og:url" content="https://studymonkey.github.io/2019/03/27/vue/index.html">
 <meta property="og:site_name" content="小毛的博客">
-<meta property="og:description" content="一、Vue安装123$ npm install -g @vue/cli$ cnpm install -g @vue/cli$ yarn add @vue/cli -g 二、快速原型开发123456789101112131415$ npm install -g @vue/cli-service-global$ cnpm install -g @vue/cli-service-global$ yarn">
+<meta property="og:description" content="一、Vue安装123456$ npm install -g @vue/cli$ cnpm install -g @vue/cli$ yarn add @vue/cli -g 二、快速原型开发123456$ npm install -g @vue/cli-service-global$ cnpm install -g @vue/cli-service-global$ yarn add @vue/cl">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-27T02:04:03.853Z">
+<meta property="og:updated_time" content="2019-03-27T02:24:59.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue基础介绍">
-<meta name="twitter:description" content="一、Vue安装123$ npm install -g @vue/cli$ cnpm install -g @vue/cli$ yarn add @vue/cli -g 二、快速原型开发123456789101112131415$ npm install -g @vue/cli-service-global$ cnpm install -g @vue/cli-service-global$ yarn">
+<meta name="twitter:description" content="一、Vue安装123456$ npm install -g @vue/cli$ cnpm install -g @vue/cli$ yarn add @vue/cli -g 二、快速原型开发123456$ npm install -g @vue/cli-service-global$ cnpm install -g @vue/cli-service-global$ yarn add @vue/cl">
   
     <link rel="alternate" href="/atom.xml" title="小毛的博客" type="application/atom+xml">
   
@@ -91,87 +91,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、Vue安装"><a href="#一、Vue安装" class="headerlink" title="一、Vue安装"></a>一、Vue安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g @vue/cli</span><br><span class="line">$ cnpm install -g @vue/cli</span><br><span class="line">$ yarn add @vue/cli -g</span><br></pre></td></tr></table></figure>
-<h2 id="二、快速原型开发"><a href="#二、快速原型开发" class="headerlink" title="二、快速原型开发"></a>二、快速原型开发</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g @vue/cli-service-global</span><br><span class="line">$ cnpm install -g @vue/cli-service-global</span><br><span class="line">$ yarn add @vue/cli-service-global -g</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">## 三、创建一个项目</span><br><span class="line"></span><br><span class="line">`$ vue create hello-world`</span><br><span class="line"></span><br><span class="line">## 四、添加路由</span><br><span class="line"></span><br><span class="line">`$ vue  add  router`</span><br><span class="line"></span><br><span class="line">### router/index.js 代码</span><br></pre></td></tr></table></figure>
-<pre><code>export default new Router({
-    mode: &apos;history&apos;,
-    routes: [
-        {
-            path: &apos;/&apos;,
-            component: Main
-        },
-        {
-            path: &apos;/login&apos;,
-            component: Login
-        }
-    ]
-})
-
-// app.vue
-&lt;div id=&quot;app&quot;&gt;
-    &lt;router-view&gt;&lt;/router-view&gt;
-&lt;/div&gt;
-
-// main.vue
-&lt;div&gt;
-    &lt;router-link to=&quot;/&quot;&gt;&lt;/router-link&gt;
-    &lt;router-link to=&quot;/login&quot;&gt;&lt;/router-link&gt;
-&lt;/div&gt;  
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 五、路由重定向</span><br></pre></td></tr></table></figure>
-<pre><code>export default new Router({
-    mode: &apos;history&apos;,
-    routes: [
-        {path: &apos;/&apos;, redirect: &apos;/main&apos;}
-        // 当只有8080和8080/ 的时候，调到主页
-    ]
-})
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 六、定义子路由</span><br></pre></td></tr></table></figure>
-<pre><code>export default new Router({
-    routes: [
-        {
-            path: &apos;/&apos;,
-            component: Main
-        },
-        {
-            path: &apos;/login&apos;,
-            component: Login
-        },
-        {
-            path: &apos;/admin&apos;,
-            component: Admin,
-            children: [
-                {path: &apos;buttons&apos;, component: Buttons },  // 注意需要使用相对地址
-                {path: &apos;Tables&apos;, component Tables }
-            ]
-        }
-    ]
-})
-
-// 父级路由存在&lt;router-view&gt;&lt;/router-view&gt;
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 七、路由守卫</span><br><span class="line">* 全局beforeRouter</span><br><span class="line">* 路由beforeEnter</span><br><span class="line">* 组件beforeRouteEnter</span><br></pre></td></tr></table></figure>
-<pre><code>const router = new Router({});
-
-router.beforeEach((to, from, next) =&gt; {
-//to 前往的路由, from 来的路由, next 下一步钩子函数，没有问题，必须执行next() 
-console.log(to);
-if (to.path !== &apos;/login&apos;) {
-    if (window.isLogin) {
-        next()
-    } else {
-        next(&apos;/login?redirect=&apos;+ to.path)
-    }
-} else {
-    next()
-}
-})
-
-export default router
-</code></pre><p><code>`</code></p>
+        <h2 id="一、Vue安装"><a href="#一、Vue安装" class="headerlink" title="一、Vue安装"></a>一、Vue安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ npm install -g @vue/cli</span><br><span class="line"></span><br><span class="line">$ cnpm install -g @vue/cli</span><br><span class="line"></span><br><span class="line">$ yarn add @vue/cli -g</span><br></pre></td></tr></table></figure>
+<h2 id="二、快速原型开发"><a href="#二、快速原型开发" class="headerlink" title="二、快速原型开发"></a>二、快速原型开发</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ npm install -g @vue/cli-service-global</span><br><span class="line"></span><br><span class="line">$ cnpm install -g @vue/cli-service-global</span><br><span class="line"></span><br><span class="line">$ yarn add @vue/cli-service-global -g</span><br></pre></td></tr></table></figure>
+<h2 id="三、创建一个项目"><a href="#三、创建一个项目" class="headerlink" title="三、创建一个项目"></a>三、创建一个项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ vue create hello-world</span><br></pre></td></tr></table></figure>
+<h2 id="四、添加路由"><a href="#四、添加路由" class="headerlink" title="四、添加路由"></a>四、添加路由</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ vue add router</span><br></pre></td></tr></table></figure>
+<h3 id="router-index-js-代码"><a href="#router-index-js-代码" class="headerlink" title="router/index.js 代码"></a>router/index.js 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line"></span><br><span class="line">mode: &apos;history&apos;,</span><br><span class="line"></span><br><span class="line">routes: [</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">path: &apos;/&apos;,</span><br><span class="line"></span><br><span class="line">component: Main</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">path: &apos;/login&apos;,</span><br><span class="line"></span><br><span class="line">component: Login</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// app.vue</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// main.vue</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;router-link to=&quot;/&quot;&gt;&lt;/router-link&gt;</span><br><span class="line"></span><br><span class="line">&lt;router-link to=&quot;/login&quot;&gt;&lt;/router-link&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="五、路由重定向"><a href="#五、路由重定向" class="headerlink" title="五、路由重定向"></a>五、路由重定向</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line"></span><br><span class="line">mode: &apos;history&apos;,</span><br><span class="line"></span><br><span class="line">routes: [</span><br><span class="line"></span><br><span class="line">&#123;path: &apos;/&apos;, redirect: &apos;/main&apos;&#125;</span><br><span class="line"></span><br><span class="line">// 当只有8080和8080/ 的时候，调到主页</span><br><span class="line"></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="六、定义子路由"><a href="#六、定义子路由" class="headerlink" title="六、定义子路由"></a>六、定义子路由</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line"></span><br><span class="line">routes: [</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">path: &apos;/&apos;,</span><br><span class="line"></span><br><span class="line">component: Main</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">path: &apos;/login&apos;,</span><br><span class="line"></span><br><span class="line">component: Login</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">path: &apos;/admin&apos;,</span><br><span class="line"></span><br><span class="line">component: Admin,</span><br><span class="line"></span><br><span class="line">children: [</span><br><span class="line"></span><br><span class="line">&#123;path: &apos;buttons&apos;, component: Buttons &#125;, // 注意需要使用相对地址</span><br><span class="line"></span><br><span class="line">&#123;path: &apos;Tables&apos;, component Tables &#125;</span><br><span class="line"></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 父级路由存在&lt;router-view&gt;&lt;/router-view&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="七、路由守卫"><a href="#七、路由守卫" class="headerlink" title="七、路由守卫"></a>七、路由守卫</h2><ul>
+<li><p>全局beforeRouter</p>
+</li>
+<li><p>路由beforeEnter</p>
+</li>
+<li><p>组件beforeRouteEnter</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const router = new Router(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">//to 前往的路由, from 来的路由, next 下一步钩子函数，没有问题，必须执行next()</span><br><span class="line"></span><br><span class="line">console.log(to);</span><br><span class="line"></span><br><span class="line">if (to.path !== &apos;/login&apos;) &#123;</span><br><span class="line"></span><br><span class="line">if (window.isLogin) &#123;</span><br><span class="line"></span><br><span class="line">next()</span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line"></span><br><span class="line">next(&apos;/login?redirect=&apos;+ to.path)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125; else &#123;</span><br><span class="line"></span><br><span class="line">next()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default router</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://studymonkey.github.io/2019/03/27/vue/" data-id="cjtqkfoc200011gwm7a4208qs" class="article-share-link">Share</a>
+      <a data-url="https://studymonkey.github.io/2019/03/27/vue/" data-id="cjtql6m170001cswmc7dtkej2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT技术/">IT技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
