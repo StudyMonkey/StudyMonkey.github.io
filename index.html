@@ -90,9 +90,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一、Vue安装"><a href="#一、Vue安装" class="headerlink" title="一、Vue安装"></a>一、Vue安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g @vue/cli</span><br><span class="line">$ cnpm install -g @vue/cli</span><br><span class="line">$ yarn add @vue/cli -g</span><br></pre></td></tr></table></figure>
-<h2 id="二、快速原型开发"><a href="#二、快速原型开发" class="headerlink" title="二、快速原型开发"></a>二、快速原型开发</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g @vue/cli-service-global</span><br><span class="line">$ cnpm install -g @vue/cli-service-global</span><br><span class="line">$ yarn add -g @vue/cli-service-global</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">## 三、创建一个项目</span></span><br><span class="line">``` bash</span><br><span class="line">$ vue create hello-world</span><br></pre></td></tr></table></figure>
+<h2 id="二、快速原型开发"><a href="#二、快速原型开发" class="headerlink" title="二、快速原型开发"></a>二、快速原型开发</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g @vue/cli-service-global</span><br><span class="line">$ cnpm install -g @vue/cli-service-global</span><br><span class="line">$ yarn add -g @vue/cli-service-global</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">## 三、创建一个项目</span></span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ vue create hello-world</span><br></pre></td></tr></table></figure>
 <h2 id="四、添加路由"><a href="#四、添加路由" class="headerlink" title="四、添加路由"></a>四、添加路由</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vue  add  router</span><br></pre></td></tr></table></figure>
-<p>(<code>`</code>)<br>    export default new Router({<br>        mode: ‘history’,<br>        routes: [<br>            {<br>                path: ‘/‘,<br>                component: Main<br>            },<br>            {<br>                path: ‘/login’,<br>                component: Login<br>            }<br>        ]<br>    })</p>
+<h3 id="router-index-js-代码"><a href="#router-index-js-代码" class="headerlink" title="router/index.js 代码"></a>router/index.js 代码</h3><p>(<code>`</code>)<br>    export default new Router({<br>        mode: ‘history’,<br>        routes: [<br>            {<br>                path: ‘/‘,<br>                component: Main<br>            },<br>            {<br>                path: ‘/login’,<br>                component: Login<br>            }<br>        ]<br>    })</p>
 <pre><code>// app.vue
 &lt;div id=&quot;app&quot;&gt;
     &lt;router-view&gt;&lt;/router-view&gt;
@@ -119,24 +119,30 @@
 <h2 id="七、路由守卫"><a href="#七、路由守卫" class="headerlink" title="七、路由守卫"></a>七、路由守卫</h2><ul>
 <li>全局beforeRouter</li>
 <li>路由beforeEnter</li>
-<li><p>组件beforeRouteEnter<br>(<code>`</code>)<br>  const router = new Router({});</p>
-<p>  router.beforeEach((to, from, next) =&gt; {<br>  //to 前往的路由, from 来的路由, next 下一步钩子函数，没有问题，必须执行next()<br>  console.log(to);<br>  if (to.path !== ‘/login’) {</p>
-<pre><code>if (window.isLogin) {
-    next()
-} else {
-    next(&apos;/login?redirect=&apos;+ to.path)
-}
-</code></pre><p>  } else {</p>
-<pre><code>next()
-</code></pre><p>  }<br>  })</p>
-<p>  export default router<br>(<code>`</code>)</p>
-</li>
+<li>组件beforeRouteEnter</li>
 </ul>
+<p>(<code>`</code>)<br>    const router = new Router({});</p>
+<pre><code>router.beforeEach((to, from, next) =&gt; {
+//to 前往的路由, from 来的路由, next 下一步钩子函数，没有问题，必须执行next() 
+console.log(to);
+if (to.path !== &apos;/login&apos;) {
+    if (window.isLogin) {
+        next()
+    } else {
+        next(&apos;/login?redirect=&apos;+ to.path)
+    }
+} else {
+    next()
+}
+})
+
+export default router
+</code></pre><p>(<code>`</code>)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://studymonkey.github.io/2019/03/27/vue/" data-id="cjtqjqr0c00013gwm3iwd1iv7" class="article-share-link">Share</a>
+      <a data-url="https://studymonkey.github.io/2019/03/27/vue/" data-id="cjtqjyyq2000104wmbauj8dku" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT技术/">IT技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -183,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://studymonkey.github.io/2019/03/27/hello-world/" data-id="cjtqjqr0500003gwmkpc9zibm" class="article-share-link">Share</a>
+      <a data-url="https://studymonkey.github.io/2019/03/27/hello-world/" data-id="cjtqjyypw000004wm9ghnt1be" class="article-share-link">Share</a>
       
       
     </footer>
