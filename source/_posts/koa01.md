@@ -1,5 +1,5 @@
 ---
-title: koa01
+title: koa源码解析(一)一Context机制
 date: 2019-03-29
 tags:
   - IT技术
@@ -21,6 +21,26 @@ const server = http.createServer( (req,res) => {
 })
 ```
 - Application的类
+#### application初始就是把http模块起了个服务器，将req和res值传入回调函数
+
+```
+const http = require('http');
+
+class Application {
+    use(callback){
+        this.callback = callback
+    }
+    
+    listen(...args) {
+        const server = http.createServer( (req,res) => {
+            this.callback(req,res)
+        })
+        server.listen(...args)
+    }
+}
+
+module.exports = Application
+```
 
 - Object.create
 Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__
