@@ -130,5 +130,81 @@ function testDec(target){
 
 console.log(Demo.isDec)
 
+```
+
+- 代理模式
 
 ```
+
+class readImg{
+    constructor(filename){
+        this.filename = filename
+    }
+
+    read(){
+        console.log(`read img ${this.filename}`)
+    }
+    
+    show(){
+        console.log(`show img ${this.filename}`)
+    }
+}
+
+class proxyImg{
+    constructor(filename){
+        this.readImg = new readImg(filename);
+    }
+
+    read(){
+        this.readImg.read();
+    }
+
+    show(){
+        this.readImg.show();
+    }
+}
+
+const proxy = new proxyImg('1.png');
+proxy.read();
+proxy.show();
+
+// 代理模式的实际运用
+// jquery $.proxy
+
+// 这是可行的
+$(selector).click(function(){
+    $(this).css('backgroundColor','red');
+})
+
+// 这是没有效果的
+$(selector).click(function(){
+    setTimeout(function(){
+        $(this).css('backgroundColor','red');
+    }, 1000)
+
+    // 这样是可行的
+    setTimeout( () => {
+        $(this).css('backgroundColor','red');
+    }, 1000) 
+
+    // 这样也是可行的
+    var _this = this;
+    setTimeout(function(){
+        $(_this).css('backgroundColor','red');
+    }, 1000)  
+
+    // 这样也是可行的
+    setTimeout($.proxy(function(){
+        $(this).css('backgroundColor','red');
+    }, 1000))         
+})
+
+
+
+
+
+
+
+
+```
+
