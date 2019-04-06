@@ -248,7 +248,7 @@
         repo: "StudyMonkey.github.io",
         owner: "studyMonkey",
         admin: "[studyMonkey]",
-        id: "" || pathId || location.pathname,
+        id: "window.location.pathname" || pathId || location.pathname,
         distractionFreeMode: true
     });
     gitalk.render('gitalk-container');
