@@ -136,5 +136,62 @@ Taro.render(<App />, document.getElementById('app'));
 
 ```
 
+#### 4. Taro中使用async/await 语法
+```
+// app.js
+import '@tarojs/async-await'
+
+// index.js
+export default class Index extends Component{
+    
+    async componentDidMount(){
+        const res = await getApi('topics', { page: 1 })
+        console.log(res)
+    }
+
+    render(){
+        return(
+            <View>
+                This is index page
+            </View>
+        )
+    }
+}
+```
+
+#### 5. Taro中H5和微信小程序要做特殊处理的地方，需用到判断process.env.TARO_ENV === 'h5'
+```
+// 像在处理触底刷新这类的小程序独有的事件时
+
+onReachBottom(){
+    // 请求新数据，合并之前数据，渲染
+}
+
+// h5 不支持这类事件，需判断环境另外处理
+
+// 暂行办法：加入按钮的点击事件去加载新数据
+
+state = {
+    isH5: process.env.TARO_ENV === 'h5'
+}
+
+handleH5Click = () => {
+    // 请求新数据，合并之前数据，渲染
+}
+
+render(){
+    return(
+        <View>
+            { isH5 ? <AtButton onClick={ this.handleH5Click }>点击</AtButton> : null }
+        </View>
+    )
+}
+```
+
+#### 6. 编码过程中遇到了mobx在H5报错，小程序运行正常的问题
+
+##### 开始把官网的加减示例放在登录部分的js操作，{ counter }报错counter找不到，编译到小程序的时候运行正常在h5的render部分打印this.props为空对象，仔细查看代码发现
+
+
 
 
