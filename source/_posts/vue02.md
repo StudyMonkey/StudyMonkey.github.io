@@ -37,6 +37,20 @@ Vue.component(Tabs.TabPane.name, Tabs.Tabpane);
 <template>
     <a-button type="primary">测试按钮</a-button>
 </template>
+
+// message 稍稍有点特殊
+// main.js
+
+import { message } from 'ant-design-vue'
+
+Vue.prototype.$message = message
+
+// chat.vue
+method(){
+    handleChatSend(){
+        this.$message.info('发起私聊请求')
+    }
+}
 ```
 
 #### 3. 修改滚动条样式
