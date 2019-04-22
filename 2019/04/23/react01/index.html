@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小毛的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://studymonkey.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="IT技术,前端,React">
+
+
+    <meta name="description" content="一、React的生命周期介绍React的生命周期分为三种状态
+
+
+初始化
+
+
+
+更新
+
+
+
+销毁
+
+
+
+初始化1、 getDefaultProps()
+设置默认的props，也可以用dufaul...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>React 生命周期的比较 | 小毛的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小毛的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小毛">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://studymonkey.github.io">小毛的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/tags/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/tags/全栈/"><i class="fa "></i>全栈</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/tags/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React 生命周期的比较">
+            
+	            React 生命周期的比较
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/IT技术/">IT技术</a> <a class="tag-link" href="/tags/React/">React</a> <a class="tag-link" href="/tags/前端/">前端</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/04/23</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="一、React的生命周期介绍"><a href="#一、React的生命周期介绍" class="headerlink" title="一、React的生命周期介绍"></a>一、React的生命周期介绍</h3><p>React的生命周期分为三种状态</p>
+<ul>
+<li><ol>
+<li>初始化</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>更新</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>销毁<br><img src="https://images2015.cnblogs.com/blog/588767/201612/588767-20161205190022429-1074951616.jpg" alt="React生命周期图"></li>
+</ol>
+</li>
+</ul>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>1、 getDefaultProps()</p>
+<h5 id="设置默认的props，也可以用dufaultProps设置组件的默认属性"><a href="#设置默认的props，也可以用dufaultProps设置组件的默认属性" class="headerlink" title="设置默认的props，也可以用dufaultProps设置组件的默认属性."></a>设置默认的props，也可以用dufaultProps设置组件的默认属性.</h5><p>2、getInitialState()</p>
+<h5 id="在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this-state。此时可以访问this-props"><a href="#在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this-state。此时可以访问this-props" class="headerlink" title="在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props"></a>在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">constructor(props)&#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">        name: &apos;小明&apos; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、componentWillMount()</p>
+<h5 id="组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state"><a href="#组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state" class="headerlink" title="组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state"></a>组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state</h5><p>4、render()</p>
+<h5 id="react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。"><a href="#react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。" class="headerlink" title="react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。"></a>react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">render()&#123;</span><br><span class="line">    return(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            This is React component</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、componentDidMount()</p>
+<h5 id="组件渲染之后调用，只调用一次。"><a href="#组件渲染之后调用，只调用一次。" class="headerlink" title="组件渲染之后调用，只调用一次。"></a>组件渲染之后调用，只调用一次。</h5><h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>6、componentWillReceiveProps(nextProps)</p>
+<h5 id="组件初始化时不调用，组件接受新的props时调用。"><a href="#组件初始化时不调用，组件接受新的props时调用。" class="headerlink" title="组件初始化时不调用，组件接受新的props时调用。"></a>组件初始化时不调用，组件接受新的props时调用。</h5><p>7、shouldComponentUpdate(nextProps, nextState)</p>
+<h5 id="react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候"><a href="#react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候" class="headerlink" title="react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候"></a>react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候</h5><p>8、componentWillUpdata(nextProps, nextState)</p>
+<h5 id="组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state"><a href="#组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state" class="headerlink" title="组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state"></a>组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state</h5><p>9、render()</p>
+<h5 id="组件渲染"><a href="#组件渲染" class="headerlink" title="组件渲染"></a>组件渲染</h5><p>10、componentDidUpdate()</p>
+<h5 id="组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点"><a href="#组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点" class="headerlink" title="组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点"></a>组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点</h5><h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>11、componentWillUnmount()</p>
+<h5 id="组件将要卸载时调用，一些事件监听和定时器需要在此时清除"><a href="#组件将要卸载时调用，一些事件监听和定时器需要在此时清除" class="headerlink" title="组件将要卸载时调用，一些事件监听和定时器需要在此时清除"></a>组件将要卸载时调用，一些事件监听和定时器需要在此时清除</h5><h3 id="值得注意的是："><a href="#值得注意的是：" class="headerlink" title="值得注意的是："></a>值得注意的是：</h3><ul>
+<li>componentWillMount</li>
+<li>componentWillReceiveProps</li>
+<li>componentWillUpdata<br>这三个方法现在被标记为不安全的方法，未来可能会被移除。</li>
+</ul>
+<h3 id="componentWillMount-和-componentDidMount的区别"><a href="#componentWillMount-和-componentDidMount的区别" class="headerlink" title="componentWillMount 和 componentDidMount的区别"></a>componentWillMount 和 componentDidMount的区别</h3><ul>
+<li>componentWillMount在render之前，componentDidMount在render之后，这意味着如果你需要在代码中拿到真实dom，则你需要用到componentDidMount。这时使用componentWillMount可能会产生一些麻烦</li>
+<li>如果需要从远端发起http请求，建议也放在componentDidMount中进行操作</li>
+<li>在componentDidMount中调用setState方法将会触发一次额外的渲染，但是它将在浏览器刷新屏幕之前发生。即使render调用两次，用户不会看到中间状态</li>
+</ul>
+<h3 id="React中一些提高性能的写法"><a href="#React中一些提高性能的写法" class="headerlink" title="React中一些提高性能的写法"></a>React中一些提高性能的写法</h3><ul>
+<li><p>在constructor中为函数绑定this，要比在render中为函数绑定this性能要来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">constructor(props)&#123;</span><br><span class="line">    super(props)</span><br><span class="line">    this.handleClick = this.handleClick.bind(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 或者用箭头函数定义方法，性能也要优于render中</span><br><span class="line"></span><br><span class="line">handleClick = () =&gt; &#123;</span><br><span class="line">    // do something</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render()&#123;</span><br><span class="line">    return(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button onClick=&quot;&#123; this.handleClick.bind(this) &#125;&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用shouldComponentUpdate做判断组件是否需要更新</p>
+</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/04/21/vue03/" class="next-post btn btn-default" title="Vue项目记录（二）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Vue项目记录（二）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        clientID: "19b16e49c4aeafef84eb",
+        clientSecret: "2a5b595e1aea30dc43599ee3d52c360d5276ed70",
+        repo: "studyMonkey.github.io/issues/1",
+        owner: "studyMonkey",
+        admin: "[studyMonkey]",
+        id: "window.location.pathname" || pathId || location.pathname,
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、React的生命周期介绍"><span class="toc-text">一、React的生命周期介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-text">初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#设置默认的props，也可以用dufaultProps设置组件的默认属性"><span class="toc-text">设置默认的props，也可以用dufaultProps设置组件的默认属性.</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this-state。此时可以访问this-props"><span class="toc-text">在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state"><span class="toc-text">组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。"><span class="toc-text">react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组件渲染之后调用，只调用一次。"><span class="toc-text">组件渲染之后调用，只调用一次。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新"><span class="toc-text">更新</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#组件初始化时不调用，组件接受新的props时调用。"><span class="toc-text">组件初始化时不调用，组件接受新的props时调用。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候"><span class="toc-text">react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state"><span class="toc-text">组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组件渲染"><span class="toc-text">组件渲染</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点"><span class="toc-text">组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点</span></a></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载"><span class="toc-text">卸载</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#组件将要卸载时调用，一些事件监听和定时器需要在此时清除"><span class="toc-text">组件将要卸载时调用，一些事件监听和定时器需要在此时清除</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#值得注意的是："><span class="toc-text">值得注意的是：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#componentWillMount-和-componentDidMount的区别"><span class="toc-text">componentWillMount 和 componentDidMount的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React中一些提高性能的写法"><span class="toc-text">React中一些提高性能的写法</span></a></li>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
