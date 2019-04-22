@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小毛的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://studymonkey.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="IT技术,前端,Taro,小程序">
+
+
+    <meta name="description" content="1. Taro中使用mobx12345678910111213141516171819202122232425262728293031323334353637383940414243444546...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Taro练习踩坑记录(二)——使用mobx | 小毛的博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小毛的博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小毛">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://studymonkey.github.io">小毛的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/tags/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/tags/全栈/"><i class="fa "></i>全栈</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/tags/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Taro练习踩坑记录(二)——使用mobx">
+            
+	            Taro练习踩坑记录(二)——使用mobx
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/IT技术/">IT技术</a> <a class="tag-link" href="/tags/Taro/">Taro</a> <a class="tag-link" href="/tags/前端/">前端</a> <a class="tag-link" href="/tags/小程序/">小程序</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/04/10</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h4 id="1-Taro中使用mobx"><a href="#1-Taro中使用mobx" class="headerlink" title="1. Taro中使用mobx"></a>1. Taro中使用mobx</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">// 根据Taro官网示例</span><br><span class="line"></span><br><span class="line">// 下载依赖包</span><br><span class="line">yarn add mobx@4.8.0 @tarojs/mobx @tarojs/mobx-h @tarojs/mobx-rn</span><br><span class="line">/ cnpm i / npm i </span><br><span class="line"></span><br><span class="line">// src目录下新建store/counter.js</span><br><span class="line"></span><br><span class="line">import &#123; observable  &#125; from &apos;@tarojs/mobx&apos;</span><br><span class="line"></span><br><span class="line">const counterStore = observable (&#123;</span><br><span class="line">    counter: 0,</span><br><span class="line">    counterStore() &#123;</span><br><span class="line">        this.counter++</span><br><span class="line">    &#125;,</span><br><span class="line">    increment() &#123;</span><br><span class="line">        this.counter++</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement() &#123;</span><br><span class="line">        this.counter++</span><br><span class="line">    &#125;,</span><br><span class="line">    incrementAsync() &#123;</span><br><span class="line">        setTimeout( () =&gt; &#123;</span><br><span class="line">            this.counter++</span><br><span class="line">        &#125;, 1000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default counterStore;</span><br><span class="line"></span><br><span class="line">// src/app.js</span><br><span class="line"></span><br><span class="line">import &#123; Provider &#125; from &apos;@tarojs/mobx&apos;</span><br><span class="line">import counterStore from &apos;./store/counter&apos;</span><br><span class="line"></span><br><span class="line">const store = &#123;</span><br><span class="line">    counterStore</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends Component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;Provider store=&#123; store &#125;&gt;</span><br><span class="line">                &lt;Index /&gt;</span><br><span class="line">            &lt;/Provider&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Taro.render(&lt;App /&gt;, document.getElementById(&apos;app&apos;));</span><br></pre></td></tr></table></figure>
+<h4 id="2-编码过程中遇到了mobx在H5报错，小程序运行正常的问题"><a href="#2-编码过程中遇到了mobx在H5报错，小程序运行正常的问题" class="headerlink" title="2. 编码过程中遇到了mobx在H5报错，小程序运行正常的问题"></a>2. 编码过程中遇到了mobx在H5报错，小程序运行正常的问题</h4><h5 id="开始把官网的加减示例放在登录部分的js操作，-counter-报错counter找不到，编译到小程序的时候运行正常在h5的render部分打印this-props为空对象，仔细查看代码发现"><a href="#开始把官网的加减示例放在登录部分的js操作，-counter-报错counter找不到，编译到小程序的时候运行正常在h5的render部分打印this-props为空对象，仔细查看代码发现" class="headerlink" title="开始把官网的加减示例放在登录部分的js操作，{ counter }报错counter找不到，编译到小程序的时候运行正常在h5的render部分打印this.props为空对象，仔细查看代码发现"></a>开始把官网的加减示例放在登录部分的js操作，{ counter }报错counter找不到，编译到小程序的时候运行正常在h5的render部分打印this.props为空对象，仔细查看代码发现</h5><h4 id="3-Taro中使用mobx，似乎不能在React子组件中使用mobx，需要在父组件引用mobx，然后由子组件将需要操作的值传递过来"><a href="#3-Taro中使用mobx，似乎不能在React子组件中使用mobx，需要在父组件引用mobx，然后由子组件将需要操作的值传递过来" class="headerlink" title="3. Taro中使用mobx，似乎不能在React子组件中使用mobx，需要在父组件引用mobx，然后由子组件将需要操作的值传递过来"></a>3. Taro中使用mobx，似乎不能在React子组件中使用mobx，需要在父组件引用mobx，然后由子组件将需要操作的值传递过来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">// study.js</span><br><span class="line"></span><br><span class="line">import &#123; inject, observer &#125; from &apos;@tarojs/mobx&apos;</span><br><span class="line">import StudyList from &apos;../../components/studyList&apos;</span><br><span class="line"></span><br><span class="line">@inject(&apos;counterViewList&apos;)</span><br><span class="line">@observer</span><br><span class="line">export default class Study extends Component&#123;</span><br><span class="line"></span><br><span class="line">    state = &#123;</span><br><span class="line">        nodeList: []</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pushViewList = (id) =&gt; &#123;</span><br><span class="line">        const &#123; counterViewList &#125; = this.props;</span><br><span class="line">        const &#123; nodeList &#125; = this.state;</span><br><span class="line">        const list = nodeList.filter( v =&gt; v.id === id );</span><br><span class="line">        counterViewList.addViewList.push(list)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        const &#123; nodeList &#125; = this.state</span><br><span class="line">        return(</span><br><span class="line">            &lt;View&gt;</span><br><span class="line">                &lt;StudyList onhandlePushList=&#123; this.pushViewList &#125; list=&#123; nodeList &#125; /&gt;</span><br><span class="line">            &lt;/View&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// studyList.js</span><br><span class="line"></span><br><span class="line">export default class StudyList extends Component&#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleItemClick = (id) =&gt; &#123;</span><br><span class="line">        const &#123; onhandlePushView &#125; = this.props;</span><br><span class="line">        onhandlePushView(id);</span><br><span class="line">        Taro.navigateTo(&#123;</span><br><span class="line">            url: &apos;/pages/detail/detail?id=&apos;+id</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;View&gt;</span><br><span class="line">                &lt;AtList&gt;</span><br><span class="line">                    &#123;</span><br><span class="line">                        list.map ( item =&gt; &#123;</span><br><span class="line">                            return(</span><br><span class="line">                                &lt;AtListItem</span><br><span class="line">                                    onClick=&#123; () =&gt; this.handleItemClick(item.id) &#125;</span><br><span class="line">                                    key=&#123; item.id &#125;</span><br><span class="line">                                    title=&#123; item.title &#125;</span><br><span class="line">                                    extraText=&#123; computedTime(item.create_at) &#125;</span><br><span class="line">                                    thumb=&#123; item.author.avatar_url &#125;</span><br><span class="line">                                /&gt;</span><br><span class="line">                            )</span><br><span class="line">                        &#125;)</span><br><span class="line">                        </span><br><span class="line">                    &#125;</span><br><span class="line">                &lt;/AtList&gt;                </span><br><span class="line">            &lt;/View&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-React组件中inject两个数据"><a href="#4-React组件中inject两个数据" class="headerlink" title="4. React组件中inject两个数据"></a>4. React组件中inject两个数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// counterView.js   counterCollect.js</span><br><span class="line">import counterView from &apos;../../store/view&apos;</span><br><span class="line">import counterCollect from &apos;../../store/collect&apos;</span><br><span class="line">import &#123; Provider &#125; from &apos;@tarojs/mobx&apos;</span><br><span class="line"></span><br><span class="line">const store = &#123;</span><br><span class="line">  counterViewList,</span><br><span class="line">  counterCollect</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">render()&#123;</span><br><span class="line">    return(</span><br><span class="line">        &lt;Provider store=&#123; store &#125;&gt;</span><br><span class="line">            &lt;Index /&gt;</span><br><span class="line">        &lt;/Provider&gt;        </span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Taro.render(&lt;App /&gt;, document.getElementById(&apos;app&apos;))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// detail.js</span><br><span class="line"></span><br><span class="line">import &#123; observer,inject &#125; from &apos;@tarojs/mobx&apos;</span><br><span class="line"></span><br><span class="line">@inject(&apos;counterView&apos;)</span><br><span class="line">@inject(&apos;counterCollect&apos;)</span><br><span class="line">@observer</span><br><span class="line">export default class Detail extends Component&#123;</span><br><span class="line"></span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;View&gt;</span><br><span class="line">                // mobx等相关操作</span><br><span class="line">            &lt;/View&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/04/13/react-native01/" class="pre-post btn btn-default" title="初识React-native（一）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">初识React-native（一）</span>
+        </a>
+    
+    
+        <a href="/2019/04/08/taro02/" class="next-post btn btn-default" title="Taro练习踩坑记录(一)">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Taro练习踩坑记录(一)</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var pathArr = location.pathname.split("/");
+    var pathId = pathArr[pathArr.length-1];
+    var gitalk = new Gitalk({
+        // Gitalk配置
+        clientID: "19b16e49c4aeafef84eb",
+        clientSecret: "2a5b595e1aea30dc43599ee3d52c360d5276ed70",
+        repo: "studyMonkey.github.io/issues/1",
+        owner: "studyMonkey",
+        admin: "[studyMonkey]",
+        id: "window.location.pathname" || pathId || location.pathname,
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Taro中使用mobx"><span class="toc-text">1. Taro中使用mobx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-编码过程中遇到了mobx在H5报错，小程序运行正常的问题"><span class="toc-text">2. 编码过程中遇到了mobx在H5报错，小程序运行正常的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#开始把官网的加减示例放在登录部分的js操作，-counter-报错counter找不到，编译到小程序的时候运行正常在h5的render部分打印this-props为空对象，仔细查看代码发现"><span class="toc-text">开始把官网的加减示例放在登录部分的js操作，{ counter }报错counter找不到，编译到小程序的时候运行正常在h5的render部分打印this.props为空对象，仔细查看代码发现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Taro中使用mobx，似乎不能在React子组件中使用mobx，需要在父组件引用mobx，然后由子组件将需要操作的值传递过来"><span class="toc-text">3. Taro中使用mobx，似乎不能在React子组件中使用mobx，需要在父组件引用mobx，然后由子组件将需要操作的值传递过来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-React组件中inject两个数据"><span class="toc-text">4. React组件中inject两个数据</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="javascript:void(0);" class="copyright-links" target="_blank" rel="nofollow">小毛</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
