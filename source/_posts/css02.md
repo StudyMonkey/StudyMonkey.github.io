@@ -13,3 +13,17 @@ tags:
 
 word-wrap: normal
 ```
+
+### 二、IE 8会报addEventListener错误
+```
+// 解决方案： 增加判断，IE中使用attachEvent
+if ( ie ) {
+  window.attachEvent('scroll', () => {
+    // do something
+  })
+} else {
+  window.addEventListener('scroll', () => {
+    // do something
+  })
+}
+```
