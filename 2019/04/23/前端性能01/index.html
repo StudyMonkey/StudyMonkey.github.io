@@ -16,10 +16,11 @@
     <link rel="dns-prefetch" href="https://studymonkey.github.io">
     <!--SEO-->
 
-    <meta name="keywords" content="前端/全栈/博客">
+    <meta name="keywords" content="IT技术,前端,性能">
 
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...">
+    <meta name="description" content="概念1在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时
+看一个栗子：123456789101112// 未节流之前的代码// 模拟ajax请求function ajax(con)...">
 
 
 
@@ -31,7 +32,7 @@
     <!--Title-->
 
 
-<title>Hello World | 小毛的博客</title>
+<title>函数节流和函数防抖 | 小毛的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="小毛的博客" type="application/atom+xml">
@@ -136,9 +137,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Hello World">
+        <h1 id="函数节流和函数防抖">
             
-	            Hello World
+	            函数节流和函数防抖
             
         </h1>
         <div class="post-meta">
@@ -154,6 +155,8 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
+                    <a class="tag-link" href="/tags/IT技术/">IT技术</a> <a class="tag-link" href="/tags/前端/">前端</a> <a class="tag-link" href="/tags/性能/">性能</a>
+                
             </span>
         </span>
     
@@ -162,7 +165,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/03/26</span>
+            <span class="date-meta">2019/04/23</span>
         </span>
         
     
@@ -172,15 +175,11 @@
     </div>
     
     <div class="post-body post-content">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时</span><br></pre></td></tr></table></figure>
+<h4 id="看一个栗子："><a href="#看一个栗子：" class="headerlink" title="看一个栗子："></a>看一个栗子：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 未节流之前的代码</span><br><span class="line"></span><br><span class="line">// 模拟ajax请求</span><br><span class="line">function ajax(con)&#123;</span><br><span class="line">    console.log(&apos;ajax&apos;+ con);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var inputTextA = document.getElementById(&apos;texta&apos;);</span><br><span class="line"></span><br><span class="line">inputTextA.addEventListener(&apos;keyup&apos;, function(e)&#123;</span><br><span class="line">    ajax(e.target.value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180905153946976?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlbl9iaW5vYmplY3Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="未节流的操作示例"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 进行节流操作</span><br><span class="line">    function ajax(content) &#123;</span><br><span class="line">        console.log(&apos;ajax request &apos; + content)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function debounce(fun, delay) &#123;</span><br><span class="line">        return function (args) &#123;</span><br><span class="line">            let that = this</span><br><span class="line">            let _args = args</span><br><span class="line">            clearTimeout(fun.id)</span><br><span class="line">            fun.id = setTimeout(function () &#123;</span><br><span class="line">                fun.call(that, _args)</span><br><span class="line">            &#125;, delay)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    let inputb = document.getElementById(&apos;testa&apos;)</span><br><span class="line"></span><br><span class="line">    let debounceAjax = debounce(ajax, 500)</span><br><span class="line"></span><br><span class="line">    inputb.addEventListener(&apos;keyup&apos;, function (e) &#123;</span><br><span class="line">        debounceAjax(e.target.value)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180905155250717?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlbl9iaW5vYmplY3Q=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="节流之后的操作示例"></p>
 
     </div>
     
@@ -198,15 +197,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/03/27/vue/" class="pre-post btn btn-default" title="Vue基础介绍">
+        <a href="/2019/04/23/react01/" class="pre-post btn btn-default" title="React 生命周期的比较">
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Vue基础介绍</span>
+            <span class="hidden-xs">React 生命周期的比较</span>
         </a>
     
     
-        <a href="/2019/03/17/css02/" class="next-post btn btn-default" title="遇到的IE 8兼容问题记录">
+        <a href="/2019/04/21/vue03/" class="next-post btn btn-default" title="Vue项目记录（二）">
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">遇到的IE 8兼容问题记录</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Vue项目记录（二）</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -247,7 +246,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#看一个栗子："><span class="toc-text">看一个栗子：</span></a></li></ol></li></ol>
         
     </div>
 </aside>

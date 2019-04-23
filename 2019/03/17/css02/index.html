@@ -16,10 +16,11 @@
     <link rel="dns-prefetch" href="https://studymonkey.github.io">
     <!--SEO-->
 
-    <meta name="keywords" content="前端/全栈/博客">
+    <meta name="keywords" content="IT技术,前端,Css">
 
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...">
+    <meta name="description" content="一、white-space: nowrap在IE 8还是换行123// 解决方案： word-wrap: normal
+二、IE 8会报addEventListener错误12345678910...">
 
 
 
@@ -31,7 +32,7 @@
     <!--Title-->
 
 
-<title>Hello World | 小毛的博客</title>
+<title>遇到的IE 8兼容问题记录 | 小毛的博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="小毛的博客" type="application/atom+xml">
@@ -136,9 +137,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Hello World">
+        <h1 id="遇到的IE 8兼容问题记录">
             
-	            Hello World
+	            遇到的IE 8兼容问题记录
             
         </h1>
         <div class="post-meta">
@@ -154,6 +155,8 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
+                    <a class="tag-link" href="/tags/Css/">Css</a> <a class="tag-link" href="/tags/IT技术/">IT技术</a> <a class="tag-link" href="/tags/前端/">前端</a>
+                
             </span>
         </span>
     
@@ -162,7 +165,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/03/26</span>
+            <span class="date-meta">2019/03/17</span>
         </span>
         
     
@@ -172,16 +175,8 @@
     </div>
     
     <div class="post-body post-content">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <h3 id="一、white-space-nowrap在IE-8还是换行"><a href="#一、white-space-nowrap在IE-8还是换行" class="headerlink" title="一、white-space: nowrap在IE 8还是换行"></a>一、white-space: nowrap在IE 8还是换行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 解决方案： </span><br><span class="line"></span><br><span class="line">word-wrap: normal</span><br></pre></td></tr></table></figure>
+<h3 id="二、IE-8会报addEventListener错误"><a href="#二、IE-8会报addEventListener错误" class="headerlink" title="二、IE 8会报addEventListener错误"></a>二、IE 8会报addEventListener错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 解决方案： 增加判断，IE中使用attachEvent</span><br><span class="line">if ( ie ) &#123;</span><br><span class="line">  window.attachEvent(&apos;scroll&apos;, () =&gt; &#123;</span><br><span class="line">    // do something</span><br><span class="line">  &#125;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  window.addEventListener(&apos;scroll&apos;, () =&gt; &#123;</span><br><span class="line">    // do something</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -198,15 +193,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/03/27/vue/" class="pre-post btn btn-default" title="Vue基础介绍">
+        <a href="/2019/03/26/hello-world/" class="pre-post btn btn-default" title="Hello World">
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Vue基础介绍</span>
+            <span class="hidden-xs">Hello World</span>
         </a>
     
     
-        <a href="/2019/03/17/css02/" class="next-post btn btn-default" title="遇到的IE 8兼容问题记录">
+        <a href="/2019/03/15/css01/" class="next-post btn btn-default" title="元素上下左右居中的几种方法">
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">遇到的IE 8兼容问题记录</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">元素上下左右居中的几种方法</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -247,7 +242,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、white-space-nowrap在IE-8还是换行"><span class="toc-text">一、white-space: nowrap在IE 8还是换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、IE-8会报addEventListener错误"><span class="toc-text">二、IE 8会报addEventListener错误</span></a></li></ol>
         
     </div>
 </aside>
